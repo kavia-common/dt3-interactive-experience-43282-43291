@@ -53,6 +53,41 @@ Common components include:
 - Navigation (`.navbar`)
 - Typography (`.title`, `.subtitle`, `.description`)
 
+## DT3 Site Pages & Routing
+
+This frontend is a small single-page app (SPA) with client-side routing:
+
+- `/` Home
+- `/about` About
+- `/contact` Contact
+
+Routing is implemented with `react-router-dom`.
+
+## Contact Form: Backend vs Mailto Fallback
+
+The Contact page supports two modes:
+
+### 1) Backend configured (recommended)
+
+If either environment variable is set, the form will POST JSON to:
+
+- `POST ${REACT_APP_API_BASE}/contact` or
+- `POST ${REACT_APP_BACKEND_URL}/contact`
+
+**Env vars (either one works):**
+- `REACT_APP_API_BASE`
+- `REACT_APP_BACKEND_URL`
+
+Payload:
+
+```json
+{ "name": "string", "email": "string", "message": "string" }
+```
+
+### 2) Backend not configured
+
+If no backend URL env var is provided, the submit button is disabled and the UI offers an **Email instead** button using a `mailto:` link with prefilled subject/body.
+
 ## Learn More
 
 To learn React, check out the [React documentation](https://reactjs.org/).
